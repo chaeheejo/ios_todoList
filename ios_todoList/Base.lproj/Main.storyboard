@@ -58,11 +58,14 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="52" id="0sq-in-eLH"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-sa-TSX">
-                                <rect key="frame" x="0.0" y="171" width="393" height="647"/>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="bottom" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-sa-TSX">
+                                <rect key="frame" x="0.0" y="171" width="393" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="EbK-Nx-7ce"/>
+                                </constraints>
                             </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7dt-Z2-PlH"/>
@@ -74,7 +77,6 @@
                             <constraint firstItem="7dt-Z2-PlH" firstAttribute="trailing" secondItem="JRi-Su-CJe" secondAttribute="trailing" constant="20" id="Tdf-IN-WC5"/>
                             <constraint firstItem="8cg-sa-TSX" firstAttribute="leading" secondItem="c9k-eq-8xd" secondAttribute="leading" id="Wiq-gs-vka"/>
                             <constraint firstItem="JRi-Su-CJe" firstAttribute="top" secondItem="7dt-Z2-PlH" secondAttribute="top" constant="10" id="hug-3X-Yxo"/>
-                            <constraint firstItem="7dt-Z2-PlH" firstAttribute="bottom" secondItem="8cg-sa-TSX" secondAttribute="bottom" id="t1b-D9-wHc"/>
                         </constraints>
                     </view>
                     <connections>
