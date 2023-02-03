@@ -33,7 +33,7 @@ class DetailViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action:    #selector(didTapDelete))
     }
     
-    @objc private func didTapDelete(){
+    @objc func didTapDelete(){
         guard let deleteItem = self.item else{
             return
         }

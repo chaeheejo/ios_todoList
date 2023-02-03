@@ -25,7 +25,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         data = realm.objects(ToDoListItem.self).map({$0})
         
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "entry")
         table.delegate = self
         table.dataSource = self
     }
@@ -35,9 +35,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = data[indexPath.row].text
-        return cell
+        let entry = tableView.dequeueReusableCell(withIdentifier: "entry", for: indexPath)
+        entry.textLabel?.text = data[indexPath.row].text
+        return entry
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -58,6 +58,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         vc.navigationItem.largeTitleDisplayMode = .never
         
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            let deleteItem = data[indexPath.row]
+            
+            realm.beginWrite()
+            realm.delete(deleteItem)
+            try! realm.commitWrite()
+            
+            refresh()
+        }
     }
     
     @IBAction func didTapAddButton(){
