@@ -34,16 +34,27 @@ class DetailViewController: UIViewController {
     }
     
     @objc func didTapDelete(){
-        guard let deleteItem = self.item else{
-            return
+        
+        let alret = UIAlertController(title: "", message: "you cannot undo this action", preferredStyle: .actionSheet)
+        let yes = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let no = UIAlertAction(title: "Delete this item?", style: .destructive) { action in
+            guard let deleteItem = self.item else{
+                return
+            }
+            
+            self.realm.beginWrite()
+            self.realm.delete(deleteItem)
+            try! self.realm.commitWrite()
+            
+            self.deletionHandler?()
+            self.navigationController?.popToRootViewController(animated: true)
         }
-        
-        realm.beginWrite()
-        realm.delete(deleteItem)
-        try! realm.commitWrite()
-        
-        deletionHandler?()
-        navigationController?.popToRootViewController(animated: true)
+
+        alret.addAction(no)
+        alret.addAction(yes)
+
+        present(alret, animated: true, completion: nil)
+    
     }
     
 
