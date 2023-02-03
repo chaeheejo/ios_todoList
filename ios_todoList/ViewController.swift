@@ -22,7 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        table.register(UITableView.self, forCellReuseIdentifier: "cell")
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         table.delegate = self
         table.dataSource = self
     }
@@ -39,7 +39,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    @IBAction func didTapAddButton(){
+        guard let vc = storyboard?.instantiateViewController(identifier: "enter") as? EntryViewController else{
+            return
+        }
+        vc.title = "New Item"
+        vc.navigationItem.largeTitleDisplayMode = .never
         
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

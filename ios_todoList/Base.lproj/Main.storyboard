@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="kWF-CO-Xee">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="663"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
@@ -30,7 +30,13 @@
                             <constraint firstItem="kWF-CO-Xee" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="vHm-U7-hk3"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="To Do List" id="jSX-Cn-4fB"/>
+                    <navigationItem key="navigationItem" title="To Do List" id="jSX-Cn-4fB">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WJc-eR-oUy">
+                            <connections>
+                                <action selector="didTapAddButton" destination="BYZ-38-t0r" id="GIg-Ca-7fc"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="table" destination="kWF-CO-Xee" id="9KK-Gl-TvI"/>
                     </connections>
@@ -39,13 +45,69 @@
             </objects>
             <point key="canvasLocation" x="942.74809160305335" y="-2.1126760563380285"/>
         </scene>
+        <!--Entry View Controller-->
+        <scene sceneID="4Od-Im-7vK">
+            <objects>
+                <viewController storyboardIdentifier="enter" id="TaG-Hd-1ys" customClass="EntryViewController" customModule="ios_todoList" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="c9k-eq-8xd" customClass="entry">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JRi-Su-CJe">
+                                <rect key="frame" x="20" y="69" width="353" height="52"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="0sq-in-eLH"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="8cg-sa-TSX">
+                                <rect key="frame" x="0.0" y="171" width="393" height="647"/>
+                            </datePicker>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="7dt-Z2-PlH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JRi-Su-CJe" firstAttribute="leading" secondItem="7dt-Z2-PlH" secondAttribute="leading" constant="20" id="0HL-yt-i9a"/>
+                            <constraint firstItem="8cg-sa-TSX" firstAttribute="top" secondItem="JRi-Su-CJe" secondAttribute="bottom" constant="50" id="9gX-pe-j5L"/>
+                            <constraint firstAttribute="trailing" secondItem="8cg-sa-TSX" secondAttribute="trailing" id="Ebo-kc-9WI"/>
+                            <constraint firstItem="7dt-Z2-PlH" firstAttribute="trailing" secondItem="JRi-Su-CJe" secondAttribute="trailing" constant="20" id="Tdf-IN-WC5"/>
+                            <constraint firstItem="8cg-sa-TSX" firstAttribute="leading" secondItem="c9k-eq-8xd" secondAttribute="leading" id="Wiq-gs-vka"/>
+                            <constraint firstItem="JRi-Su-CJe" firstAttribute="top" secondItem="7dt-Z2-PlH" secondAttribute="top" constant="10" id="hug-3X-Yxo"/>
+                            <constraint firstItem="7dt-Z2-PlH" firstAttribute="bottom" secondItem="8cg-sa-TSX" secondAttribute="bottom" id="t1b-D9-wHc"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="dataPicker" destination="8cg-sa-TSX" id="0ob-gU-G8W"/>
+                        <outlet property="textField" destination="JRi-Su-CJe" id="esw-AG-t3w"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NN0-Sh-4l8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1855" y="14"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="tVm-qU-adF">
+            <objects>
+                <viewController id="Ag5-hc-JNa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6cf-kg-nwv">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="0hH-u8-Vvw"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sFE-4V-Rln" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2731" y="13"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="8fZ-Tj-8Xq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="RQ0-JT-41d" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="rZc-dq-RUX">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="rZc-dq-RUX">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
