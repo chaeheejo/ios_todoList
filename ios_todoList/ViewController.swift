@@ -42,6 +42,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        let item = data[indexPath.row]
+        
+        guard let vc = storyboard?.instantiateViewController(identifier: "detail") as? DetailViewController else{
+            return
+        }
+        
+        vc.item = item
+        vc.deletionHandler = { [weak self] in
+            self?.refresh()
+        }
+        
+        vc.title = item.text
+        vc.navigationItem.largeTitleDisplayMode = .never
+        
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func didTapAddButton(){
