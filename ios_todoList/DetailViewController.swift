@@ -15,8 +15,8 @@ class DetailViewController: UIViewController {
     
     private let realm = try! Realm()
     
-    @IBOutlet var itemLabel: UILabel!
-    @IBOutlet var dateLabel: UILabel!
+    @IBOutlet var textField: UITextField!
+    @IBOutlet var datePicker: UIDatePicker!
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -26,9 +26,11 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        itemLabel.text = item?.text
-        dateLabel.text = Self.dateFormatter.string(from: item!.date)
+        
+        textField.text = item?.text
+        
+        datePicker.setDate(item!.date, animated: true)
+        datePicker.contentHorizontalAlignment = .center
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action:    #selector(didTapDelete))
     }

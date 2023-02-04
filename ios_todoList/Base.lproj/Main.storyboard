@@ -96,39 +96,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAV-qP-hHY">
-                                <rect key="frame" x="20" y="79" width="353" height="70"/>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ERc-Rd-jSf">
+                                <rect key="frame" x="20" y="69" width="353" height="52"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="xY8-rG-CA4"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="QhX-Xu-A24"/>
+                                    <constraint firstAttribute="height" constant="52" id="uzO-eY-aZU"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxQ-Cz-LhD">
-                                <rect key="frame" x="20" y="159" width="353" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="4kf-SV-BY7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CuO-23-OLe">
+                                <rect key="frame" x="0.0" y="171" width="393" height="34"/>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SB5-9L-UHs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="SB5-9L-UHs" firstAttribute="trailing" secondItem="mxQ-Cz-LhD" secondAttribute="trailing" constant="20" id="6nD-9y-5ar"/>
-                            <constraint firstItem="dAV-qP-hHY" firstAttribute="top" secondItem="SB5-9L-UHs" secondAttribute="top" constant="20" id="J3I-pb-LVa"/>
-                            <constraint firstItem="SB5-9L-UHs" firstAttribute="trailing" secondItem="dAV-qP-hHY" secondAttribute="trailing" constant="20" id="QOu-II-wRX"/>
-                            <constraint firstItem="mxQ-Cz-LhD" firstAttribute="top" secondItem="dAV-qP-hHY" secondAttribute="bottom" constant="10" id="XQy-35-GYR"/>
-                            <constraint firstItem="mxQ-Cz-LhD" firstAttribute="leading" secondItem="SB5-9L-UHs" secondAttribute="leading" constant="20" id="m8w-FD-nKH"/>
-                            <constraint firstItem="dAV-qP-hHY" firstAttribute="leading" secondItem="SB5-9L-UHs" secondAttribute="leading" constant="20" id="wwy-DZ-se0"/>
+                            <constraint firstItem="CuO-23-OLe" firstAttribute="top" secondItem="ERc-Rd-jSf" secondAttribute="bottom" constant="50" id="CTM-pE-LrC"/>
+                            <constraint firstItem="SB5-9L-UHs" firstAttribute="trailing" secondItem="ERc-Rd-jSf" secondAttribute="trailing" constant="20" id="MWo-Mu-l19"/>
+                            <constraint firstItem="ERc-Rd-jSf" firstAttribute="top" secondItem="SB5-9L-UHs" secondAttribute="top" constant="10" id="O7i-YN-IOd"/>
+                            <constraint firstAttribute="trailing" secondItem="CuO-23-OLe" secondAttribute="trailing" id="aSX-IX-7kP"/>
+                            <constraint firstItem="CuO-23-OLe" firstAttribute="leading" secondItem="1Vk-l4-H7D" secondAttribute="leading" id="fKf-qI-C2k"/>
+                            <constraint firstItem="ERc-Rd-jSf" firstAttribute="leading" secondItem="SB5-9L-UHs" secondAttribute="leading" constant="20" id="gUW-eM-Cfh"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="dateLabel" destination="mxQ-Cz-LhD" id="hTg-fT-j83"/>
-                        <outlet property="itemLabel" destination="dAV-qP-hHY" id="ZCm-8P-GQ2"/>
+                        <outlet property="datePicker" destination="CuO-23-OLe" id="IN2-Pe-mLc"/>
+                        <outlet property="textField" destination="ERc-Rd-jSf" id="5JG-vt-teV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AqB-ju-An5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
