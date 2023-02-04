@@ -50,7 +50,12 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         
         vc.item = item
+        
         vc.deletionHandler = { [weak self] in
+            self?.refresh()
+        }
+        
+        vc.modificationHandler = { [weak self] in
             self?.refresh()
         }
         
@@ -81,7 +86,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             return
         }
         
-        vc.completionHandler = { [weak self] in
+        vc.additionHandler = { [weak self] in
             self?.refresh()
         }
         

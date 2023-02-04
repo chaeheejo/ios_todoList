@@ -12,11 +12,43 @@ class DetailViewController: UIViewController {
     
     public var item: ToDoListItem?
     public var deletionHandler: (()->Void)?
+    public var modificationHandler: (()->Void)?
     
     private let realm = try! Realm()
     
     @IBOutlet var textField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
+    
+    
+    @IBAction func didTapModify(_ sender: Any) {
+        let alret = UIAlertController(title: "Do you want to midify this item?", message: "you cannot undo this action", preferredStyle: .actionSheet)
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        let delete = UIAlertAction(title: "Modify this item?", style: .destructive) { action in
+            guard let originalItem = self.item else{
+                return
+            }
+            
+            let modifyItem = self.realm.objects(ToDoListItem.self).filter(NSPredicate(format: "text = %@", originalItem.text)).first!
+            
+            if let text = self.textField.text, !text.isEmpty {
+                try! self.realm.write {
+                    modifyItem.text = text
+                    modifyItem.date = self.datePicker.date
+                }
+                
+                self.modificationHandler?()
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            else{
+                print("Add somthing!")
+            }
+        }
+
+        alret.addAction(delete)
+        alret.addAction(cancel)
+
+        present(alret, animated: true, completion: nil)
+    }
     
     static let dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -36,7 +68,6 @@ class DetailViewController: UIViewController {
     }
     
     @objc func didTapDelete(){
-        
         let alret = UIAlertController(title: "", message: "you cannot undo this action", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         let delete = UIAlertAction(title: "Delete this item?", style: .destructive) { action in
@@ -56,9 +87,5 @@ class DetailViewController: UIViewController {
         alret.addAction(cancel)
 
         present(alret, animated: true, completion: nil)
-    
     }
-    
-
-
 }

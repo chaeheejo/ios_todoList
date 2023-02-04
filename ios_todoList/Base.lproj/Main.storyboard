@@ -108,13 +108,25 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CuO-23-OLe">
                                 <rect key="frame" x="0.0" y="171" width="393" height="34"/>
                             </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIW-Fr-il0">
+                                <rect key="frame" x="150" y="265.33333333333331" width="93" height="50.333333333333314"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="gray" title="Modify" buttonSize="large"/>
+                                <connections>
+                                    <action selector="didTapModify:" destination="OJk-hq-BZW" eventType="touchUpInside" id="8bG-Ap-Cyh"/>
+                                    <segue destination="OJk-hq-BZW" kind="modal" id="j9t-LX-UcM"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="SB5-9L-UHs"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="SB5-9L-UHs" firstAttribute="trailing" secondItem="hIW-Fr-il0" secondAttribute="trailing" constant="150" id="AVl-xm-csF"/>
                             <constraint firstItem="CuO-23-OLe" firstAttribute="top" secondItem="ERc-Rd-jSf" secondAttribute="bottom" constant="50" id="CTM-pE-LrC"/>
                             <constraint firstItem="SB5-9L-UHs" firstAttribute="trailing" secondItem="ERc-Rd-jSf" secondAttribute="trailing" constant="20" id="MWo-Mu-l19"/>
                             <constraint firstItem="ERc-Rd-jSf" firstAttribute="top" secondItem="SB5-9L-UHs" secondAttribute="top" constant="10" id="O7i-YN-IOd"/>
+                            <constraint firstItem="hIW-Fr-il0" firstAttribute="top" secondItem="CuO-23-OLe" secondAttribute="bottom" constant="60" id="RcG-Cf-gdi"/>
+                            <constraint firstItem="hIW-Fr-il0" firstAttribute="leading" secondItem="SB5-9L-UHs" secondAttribute="leading" constant="150" id="UKt-4X-B3S"/>
                             <constraint firstAttribute="trailing" secondItem="CuO-23-OLe" secondAttribute="trailing" id="aSX-IX-7kP"/>
                             <constraint firstItem="CuO-23-OLe" firstAttribute="leading" secondItem="1Vk-l4-H7D" secondAttribute="leading" id="fKf-qI-C2k"/>
                             <constraint firstItem="ERc-Rd-jSf" firstAttribute="leading" secondItem="SB5-9L-UHs" secondAttribute="leading" constant="20" id="gUW-eM-Cfh"/>

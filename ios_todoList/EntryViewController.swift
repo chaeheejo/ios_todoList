@@ -14,7 +14,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var datePicker: UIDatePicker!
     
     private let realm = try! Realm()
-    public var completionHandler: (()->Void)?
+    public var additionHandler: (()->Void)?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ class EntryViewController: UIViewController, UITextFieldDelegate {
             
             try! realm.commitWrite()
             
-            completionHandler?()
+            additionHandler?()
             navigationController?.popToRootViewController(animated: true)
             
         }
