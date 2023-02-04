@@ -19,11 +19,10 @@ class DetailViewController: UIViewController {
     @IBOutlet var textField: UITextField!
     @IBOutlet var datePicker: UIDatePicker!
     
-    
     @IBAction func didTapModify(_ sender: Any) {
         let alret = UIAlertController(title: "Do you want to midify this item?", message: "you cannot undo this action", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        let delete = UIAlertAction(title: "Modify this item?", style: .destructive) { action in
+        let delete = UIAlertAction(title: "Modify this item?", style: .default) { action in
             guard let originalItem = self.item else{
                 return
             }
@@ -49,12 +48,6 @@ class DetailViewController: UIViewController {
 
         present(alret, animated: true, completion: nil)
     }
-    
-    static let dateFormatter: DateFormatter = {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .medium
-        return dateFormatter
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,6 +58,16 @@ class DetailViewController: UIViewController {
         datePicker.contentHorizontalAlignment = .center
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action:    #selector(didTapDelete))
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+           self.view.endEditing(true)
+       }
+    
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     @objc func didTapDelete(){
