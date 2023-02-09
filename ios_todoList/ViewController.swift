@@ -28,6 +28,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.register(UITableViewCell.self, forCellReuseIdentifier: "entry")
         table.delegate = self
         table.dataSource = self
+        table.separatorInset.right = table.separatorInset.left
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -35,9 +40,10 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let entry = tableView.dequeueReusableCell(withIdentifier: "entry", for: indexPath)
-        entry.textLabel?.text = data[indexPath.row].text
-        return entry
+        let cell = tableView.dequeueReusableCell(withIdentifier: "custom", for: indexPath) as! customTableViewCell
+        cell.title.text = data[indexPath.row].text
+        cell.tagName.text = data[indexPath.row].text
+        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
