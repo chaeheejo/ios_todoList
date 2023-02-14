@@ -34,6 +34,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         self.definesPresentationContext = true
         searchbar.delegate = self
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -49,7 +50,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let item = data[indexPath.row]
+        let item = filteredData[indexPath.row]
         
         guard let vc = storyboard?.instantiateViewController(identifier: "detail") as? DetailViewController else{
             return
@@ -127,6 +128,9 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func refresh(){
         data = realm.objects(ToDoListItem.self).map({$0})
+        if (searchbar.text?.count)! == 0 {
+            filteredData = data
+        }
         table.reloadData()
     }
 
