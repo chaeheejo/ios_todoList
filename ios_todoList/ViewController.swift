@@ -13,11 +13,13 @@ class ToDoListItem: Object {
     @objc dynamic var date: Date = Date()
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet var table: UITableView!
+    @IBOutlet var searchbar: UISearchBar!
     
     private var data = [ToDoListItem]()
+    private var filteredData = [ToDoListItem]()
     private let realm = try! Realm()
 
     override func viewDidLoad() {
@@ -28,15 +30,19 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         table.register(UITableViewCell.self, forCellReuseIdentifier: "entry")
         table.delegate = self
         table.dataSource = self
+        
+        self.definesPresentationContext = true
+        searchbar.delegate = self
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return tableView == table ? filteredData.count : data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let entry = tableView.dequeueReusableCell(withIdentifier: "entry", for: indexPath)
-        entry.textLabel?.text = data[indexPath.row].text
+        entry.textLabel?.text = (tableView == table ? filteredData[indexPath.row].text : data[indexPath.row].text)
         return entry
     }
     
@@ -79,6 +85,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             refresh()
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        filteredData = data.filter({ (data: ToDoListItem) -> Bool in
+            return data.text.lowercased().contains(searchbar.text!.lowercased())
+        })
+        table.reloadData()
     }
     
     @IBAction func didTapAddButton(){
