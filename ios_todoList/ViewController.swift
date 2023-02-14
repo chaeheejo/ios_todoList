@@ -26,6 +26,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         
         data = realm.objects(ToDoListItem.self).map({$0})
+        filteredData = data
         
         table.register(UITableViewCell.self, forCellReuseIdentifier: "entry")
         table.delegate = self
@@ -88,10 +89,26 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredData = data.filter({ (data: ToDoListItem) -> Bool in
-            return data.text.lowercased().contains(searchbar.text!.lowercased())
-        })
+        if (searchbar.text?.count)! > 0 {
+            filteredData = data.filter({ (data: ToDoListItem) -> Bool in
+                return data.text.lowercased().contains(searchbar.text!.lowercased())
+            })
+        }
+        else{
+            filteredData = data
+        }
         table.reloadData()
+            
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchbar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchbar.showsCancelButton = false
+        searchbar.resignFirstResponder()
+        refresh()
     }
     
     @IBAction func didTapAddButton(){
