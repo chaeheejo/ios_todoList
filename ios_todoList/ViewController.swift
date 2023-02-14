@@ -13,37 +13,37 @@ class ToDoListItem: Object {
     @objc dynamic var date: Date = Date()
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet var table: UITableView!
+    @IBOutlet var searchbar: UISearchBar!
     
     private var data = [ToDoListItem]()
+    private var filteredData = [ToDoListItem]()
     private let realm = try! Realm()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         data = realm.objects(ToDoListItem.self).map({$0})
+        filteredData = data
         
         table.register(UITableViewCell.self, forCellReuseIdentifier: "entry")
         table.delegate = self
         table.dataSource = self
-        table.separatorInset.right = table.separatorInset.left
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        
+        self.definesPresentationContext = true
+        searchbar.delegate = self
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return tableView == table ? filteredData.count : data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "custom", for: indexPath) as! customTableViewCell
-        cell.title.text = data[indexPath.row].text
-        cell.tagName.text = data[indexPath.row].text
-        return cell
+        let entry = tableView.dequeueReusableCell(withIdentifier: "entry", for: indexPath)
+        entry.textLabel?.text = (tableView == table ? filteredData[indexPath.row].text : data[indexPath.row].text)
+        return entry
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -85,6 +85,29 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             refresh()
         }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if (searchbar.text?.count)! > 0 {
+            filteredData = data.filter({ (data: ToDoListItem) -> Bool in
+                return data.text.lowercased().contains(searchbar.text!.lowercased())
+            })
+        }
+        else{
+            filteredData = data
+        }
+        table.reloadData()
+            
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchbar.showsCancelButton = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchbar.showsCancelButton = false
+        searchbar.resignFirstResponder()
+        refresh()
     }
     
     @IBAction func didTapAddButton(){
