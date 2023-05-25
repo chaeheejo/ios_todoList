@@ -6,5 +6,7 @@
 - 아이템 제목으로 검색 기능 구현
 - 리스트에는 아이템 등록순으로 정렬
 
+<br/>
+
 ## demo video
 [demo](https://blog.naver.com/60cogml/223111593488)
