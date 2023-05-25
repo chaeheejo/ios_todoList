@@ -22,7 +22,7 @@ class DetailViewController: UIViewController {
     @IBAction func didTapModify(_ sender: Any) {
         let alret = UIAlertController(title: "Do you want to midify this item?", message: "you cannot undo this action", preferredStyle: .actionSheet)
         let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-        let delete = UIAlertAction(title: "Modify this item?", style: .default) { action in
+        let modify = UIAlertAction(title: "Modify this item?", style: .default) { action in
             guard let originalItem = self.item else{
                 return
             }
@@ -43,7 +43,7 @@ class DetailViewController: UIViewController {
             }
         }
 
-        alret.addAction(delete)
+        alret.addAction(modify)
         alret.addAction(cancel)
 
         present(alret, animated: true, completion: nil)

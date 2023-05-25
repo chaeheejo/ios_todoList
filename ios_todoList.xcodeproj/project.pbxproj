@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		807D46A7299523490047E43E /* customTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807D46A6299523490047E43E /* customTableViewCell.swift */; };
 		80A3FC70298CE67600260989 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3FC6F298CE67600260989 /* EntryViewController.swift */; };
 		80A3FC74298D004700260989 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80A3FC73298D004700260989 /* DetailViewController.swift */; };
 		80CC1881298BB0AD008D3938 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80CC1880298BB0AD008D3938 /* AppDelegate.swift */; };
@@ -22,7 +21,6 @@
 /* Begin PBXFileReference section */
 		2C47ED6FDD854CF7FCA6AD5F /* Pods-ios_todoList.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios_todoList.debug.xcconfig"; path = "Target Support Files/Pods-ios_todoList/Pods-ios_todoList.debug.xcconfig"; sourceTree = "<group>"; };
 		5DBF8E80345309149ED1D51B /* Pods_ios_todoList.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ios_todoList.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		807D46A6299523490047E43E /* customTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = customTableViewCell.swift; sourceTree = "<group>"; };
 		80A3FC6F298CE67600260989 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		80A3FC73298D004700260989 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		80CC187D298BB0AD008D3938 /* ios_todoList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ios_todoList.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,7 +85,6 @@
 				80CC188E298BB0AE008D3938 /* Info.plist */,
 				80A3FC6F298CE67600260989 /* EntryViewController.swift */,
 				80A3FC73298D004700260989 /* DetailViewController.swift */,
-				807D46A6299523490047E43E /* customTableViewCell.swift */,
 			);
 			path = ios_todoList;
 			sourceTree = "<group>";
@@ -217,7 +214,6 @@
 			files = (
 				80CC1885298BB0AD008D3938 /* ViewController.swift in Sources */,
 				80A3FC70298CE67600260989 /* EntryViewController.swift in Sources */,
-				807D46A7299523490047E43E /* customTableViewCell.swift in Sources */,
 				80A3FC74298D004700260989 /* DetailViewController.swift in Sources */,
 				80CC1881298BB0AD008D3938 /* AppDelegate.swift in Sources */,
 				80CC1883298BB0AD008D3938 /* SceneDelegate.swift in Sources */,
